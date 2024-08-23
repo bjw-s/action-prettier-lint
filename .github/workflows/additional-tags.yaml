@@ -1,0 +1,25 @@
+---
+name: Additional Tags
+
+on:
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  additional-tags:
+    name: 🏷 Additional Tags
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 🚀 Run Release Tracker
+        uses: vweevers/additional-tags-action@v2

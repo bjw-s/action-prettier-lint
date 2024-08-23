@@ -1,0 +1,41 @@
+---
+name: Run prettier and set annotations
+description: Run prettier and set annotations.
+
+inputs:
+  ### Flags for prettier ###
+  prettier_version:
+    description: "The version of prettier to install"
+    default: "latest"
+    required: false
+  prettier_config:
+    description: "Config file to pass to the prettier command"
+    required: false
+    default: ""
+  prettier_ignore:
+    description: "Ignore file to pass to the prettier command"
+    required: false
+    default: ""
+  file_pattern:
+    description: "Files to lint"
+    required: false
+    default: "."
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Register problem matcher
+      shell: bash
+      run: |
+        cp "$GITHUB_ACTION_PATH/src/matcher.json" "prettier-matcher.json"
+        echo "::add-matcher::prettier-matcher.json"
+
+    - name: Run prettier
+      run: $GITHUB_ACTION_PATH/src/script.sh
+      shell: bash
+      env:
+        PRETTIER_VERSION: ${{ inputs.prettier_version }}
+        PRETTIER_CONFIG: ${{ inputs.prettier_config }}
+        PRETTIER_IGNORE: ${{ inputs.prettier_ignore }}
+        FILE_PATTERN: ${{ inputs.workdir }}

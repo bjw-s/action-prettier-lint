@@ -1,0 +1,50 @@
+---
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+sort-direction: ascending
+
+categories:
+  - title: "🚨 Breaking changes"
+    labels:
+      - "type/major"
+  - title: "✨ Changes"
+    labels:
+      - "type/minor"
+  - title: "🐛 Bug fixes"
+    labels:
+      - "type/patch"
+  - title: "📚 Documentation"
+    labels:
+      - "documentation"
+  - title: "⬆️ Dependency updates"
+    labels:
+      - "dependencies"
+
+version-resolver:
+  major:
+    labels:
+      - "type/major"
+  minor:
+    labels:
+      - "type/minor"
+  patch:
+    labels:
+      - "type/patch"
+  default: patch
+
+template: |
+  ## What’s changed
+
+  $CHANGES
+
+autolabeler:
+  - label: 'type/major'
+    title:
+      - '/feat(\(.*?\))?!:.+/'
+  - label: 'type/minor'
+    title:
+      - '/feat(\(.*?\))?:.+/'
+  - label: 'type/patch'
+    title:
+      - '/fix(\(.*?\))?:.+/'
