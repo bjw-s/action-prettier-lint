@@ -1,0 +1,15 @@
+{
+  "problemMatcher": [
+    {
+      "owner": "prettier",
+      "pattern": [
+        {
+          "regexp": "^([^:]+): ([^:]+?): (.+)$",
+          "severity": 1,
+          "file": 2,
+          "message": 3
+        }
+      ]
+    }
+  ]
+}
