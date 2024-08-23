@@ -38,4 +38,4 @@ runs:
         PRETTIER_VERSION: ${{ inputs.prettier_version }}
         PRETTIER_CONFIG: ${{ inputs.prettier_config }}
         PRETTIER_IGNORE: ${{ inputs.prettier_ignore }}
-        FILE_PATTERN: ${{ inputs.workdir }}
+        FILE_PATTERN: ${{ inputs.file_pattern }}
